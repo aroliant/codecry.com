@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+{% include 'stylesheets.html' %}
+    </head>
+    <body>
+
+{% include 'navigation.html' %}
+
+<div class="header">
+    <h2>Browse : {{ language }}</h2>
+</div>
+
+
+<div class="container">
+
+
+
+
+<div class="lang_navigation">
+<h2 style="font-size: 23px;">Languages</h2>
+<ul>
+    <li><span class="icon php"></span><a href="https://www.aroliant.com/code/language/php/">PHP</a><span class="count">{{stats.php}}</span></li>
+    <li><span class="icon c"></span><a href="https://www.aroliant.com/code/language/c/">C</a><span class="count">{{stats.c}}</span></li>
+    <li><span class="icon cpp"></span><a href="https://www.aroliant.com/code/language/cpp/">C++</a><span class="count">{{stats.cpp}}</span></li>
+    <li><span class="icon java"></span><a href="https://www.aroliant.com/code/language/java/">Java</a><span class="count">{{stats.java}}</span></li>
+    <li><span class="icon python"></span><a href="https://www.aroliant.com/code/language/python/">Python</a><span class="count">
+{{stats.python ? stats.python : 0 }}</span></li>
+    <li><span class="icon ruby"></span><a href="https://www.aroliant.com/code/language/ruby/">Ruby</a><span  class="count">{{stats.ruby ? stats.ruby : 0 }}</span></li>
+    <li><span class="icon javascript"></span><a href="https://www.aroliant.com/code/language/javascript/">JavaScript</a><span class="count">{{stats.javascript ? stats.javascript : 0 }}</span></li>
+</ul>
+</div>
+<div class="recent_updates">
+<h2 style="font-size: 23px;"> </h2>
+    <ul>
+
+
+    {% for program in programs %}
+
+
+        <li>
+            <h2 class=""><a href="{{ program.link }}">{{ program.title }}</a></h2>
+            <div class="clearfix">
+                <span class="tag {{ program.lang }}"></span>
+                <span class="author">{{ program.author }}</span>
+                <span class="time" time="{{ program.time }}"></span>
+            </div>
+            <hr class="divider"></hr>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+</div>
+
+{% include 'footer.html' %}
+    </body>
+</html>
+{% include 'scripts.html' %}
