@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+{% include 'stylesheets.html' %}
+    </head>
+    <body style="background: #EEE;">
+
+{% include 'navigation.html' %}
+
+<div class="header">
+    <h2>{{ program.title }}</h2>
+</div>
+
+
+<div class="container">
+
+
+
+</div>
+
+{% include 'footer.html' %}
+    </body>
+</html>
+<script type="text/javascript" src="{{base_url}}ui/js/spin.min.js"></script>
+{% include 'scripts.html' %}
+
+<script type="text/javascript">
+
+function loaderShow(){
+  $("#loader").show(500);
+}
+function loaderHide(){
+  $("#loader").hide(500);
+}
+
+var opts = {
+            lines: 10, // The number of lines to draw
+            length: 7, // The length of each line
+            width: 4, // The line thickness
+            radius: 10, // The radius of the inner circle
+            corners: 1, // Corner roundness (0..1)
+            rotate: 0, // The rotation offset
+            color: '#FFF', // #rgb or #rrggbb
+            speed: 1, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: 25, // Top position relative to parent in px
+            left: 25 // Left position relative to parent in px
+        };
+        var target = document.getElementById('loader');
+        var spinner = new Spinner(opts).spin(target);
+
+function compile () {
+
+loaderShow();
+
+$.ajax({
+  url: '{{base_url}}compile?id={{program.id}}',
+  type: 'GET',
+  success: function(msg) {
+    $('.displayHolder').show();
+    $('#display').html(msg);
+    var d = new Date();
+    var time =d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+' '+d.getHours()+ ":" + d.getMinutes() + ":" + d.getSeconds();
+    $('#timeUpdate').html(time);
+    loaderHide();
+},
+error: function(msg) {
+    $('.displayHolder').show();
+  $('#display').html("Unable to connect Internet !");
+  loaderHide();
+}
+});
+}
+
+
+$("#compile").click(function(){
+  compile();
+});
+$('#view').click(function(){
+    $('.output').show();
+});
+</script>

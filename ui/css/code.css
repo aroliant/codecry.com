@@ -174,3 +174,14 @@ footer ul li a{
 .dark-grey{
     color: #8B8888;
 }
+
+.nav_user{
+    display: none;
+}
+/*.dropdown-menu{
+    right: 36px !important;
+    top: 48px;
+}*/
+.dropdown-menu li a{
+    line-height:3 !important;
+}

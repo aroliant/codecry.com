@@ -22,7 +22,7 @@
 <pre id="codestore" style="display:none;">{{program.content}}</pre>
 <div class="proButton">
 <button class="op" id="view">View Output</button>
-<a href="https://www.aroliant.com/code/{{program.lang}}/{{program.url_id}}/download"><button class="cp" >Download</button></a>
+<a href="{{base_url}}{{program.lang}}/{{program.url_id}}/download"><button class="cp" >Download</button></a>
 <button class="com" id="compile">Compile</button>
 </div>
 
@@ -39,8 +39,8 @@
 {% include 'footer.html' %}
     </body>
 </html>
-<script type="text/javascript" src="https://www.aroliant.com/code/ui/css/prettify/run_prettify.js"></script>
-<script type="text/javascript" src="https://www.aroliant.com/code/ui/js/spin.min.js"></script>
+<script type="text/javascript" src="{{base_url}}ui/css/prettify/run_prettify.js"></script>
+<script type="text/javascript" src="{{base_url}}ui/js/spin.min.js"></script>
 {% include 'scripts.html' %}
 
 <script type="text/javascript">
@@ -77,7 +77,7 @@ function compile () {
 loaderShow();
 
 $.ajax({
-  url: 'https://www.aroliant.com/code/compile?id={{program.id}}',
+  url: '{{base_url}}compile?id={{program.id}}',
   type: 'GET',
   success: function(msg) {
     $('.displayHolder').show();

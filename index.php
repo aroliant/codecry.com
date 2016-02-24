@@ -1,4 +1,7 @@
 <?php
+$GLOBALS['DEPLOY']  = false;
+$GLOBALS['BASE_URL'] = ''.($GLOBALS['DEPLOY']  ? "https://www.aroliant.com/code/" : "http://localhost/code/");
+
 require_once 'functions.php';
 require 'Code.php';
 
@@ -9,13 +12,12 @@ Twig_Autoloader::register();
 
 $loader = new Twig_Loader_Filesystem('ui/');
 $GLOBALS['twig'] = new Twig_Environment($loader);
-$GLOBALS['BASE_URL'] = "https://www.aroliant.com/code/";
 $GLOBALS['twig']->addGlobal('base_url', $GLOBALS['BASE_URL']);
 
 
-$GLOBALS['twig'] = new Twig_Environment($loader, array(
-     'cache' => 'ui/cache/',
-));
+// $GLOBALS['twig'] = new Twig_Environment($loader, array(
+//      'cache' => 'ui/cache/',
+// ));
 
 
 
@@ -158,6 +160,76 @@ $app->get('/:language/:url_id/download',function($language,$url_id){
 
 
 });
+
+
+//Code Feeding ( Programs Uploader )
+$app->get("/coder/",function(){
+
+include_once '../accounts/Functions.php';
+
+sec_session_start();
+
+if (login_check($mysqli) == true) {
+
+$drafts = (array) get_user_drafts($_SESSION['username']);
+
+echo $GLOBALS['twig']->render('coder.html', array(
+        'title'=>"",
+        'program'=>"",
+        'drafts' => $drafts ));
+exit();
+}else{
+    echo "This page is not available for you.";
+    exit();
+}
+
+
+});
+
+$app->get("/coder/create/",function(){
+include_once '../accounts/Functions.php';
+
+sec_session_start();
+
+if (login_check($mysqli) == true) {
+    echo $GLOBALS['twig']->render('create.html', array(
+        'title'=>"",
+        'program'=>""));
+    exit();
+}
+
+});
+
+$app->get("/coder/edit/:id",function($id){
+include_once '../accounts/Functions.php';
+
+sec_session_start();
+
+if (login_check($mysqli) == true) {
+
+$program = (array) load_program($id);
+
+// User Verificatiom
+
+$email = $_SESSION['email'];
+$get = $mysqli->query("SELECT * FROM members WHERE email='$email'");
+$getData = $get->fetch_object();
+
+
+if(!$_SESSION['username']==$program['author'] || !$getData->dx==1){
+    echo "You can't edit this program";
+    exit();
+}
+
+    echo $GLOBALS['twig']->render('editor.html', array(
+        'title'=>"Edit - ".$program["title"],
+        'program'=>$program));
+    exit();
+}
+
+});
+
+
 
 
 $app->run();

@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="https://www.aroliant.com/code/"><img src="https://www.aroliant.com/code/ui/img/logo.png" alt="code" style="width: 124px;top: -8px;position: relative;"></a>
+      <a class="navbar-brand" href="{{ base_url }}"><img src="{{ base_url }}ui/img/logo.png" alt="code" style="width: 124px;top: -8px;position: relative;"></a>
     </div>
 
 
@@ -21,18 +21,36 @@
     <div id="autocompleter" class="autocompleter">
     </div>
 </form>
-
-<ul class="nav navbar-nav navbar-right">
-<!--<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Browse<span class="caret"></span></a>
-  <ul class="dropdown-menu" role="menu">
-    <li data-toggle="modal" ><a href="#">Browse Languages</a></li>
-    <li data-toggle="modal" ><a href="#">Browse Categories</a></li>
-  </ul>
-</li>-->
-
-<!-- <li><a href="https://www.aroliant.com/code/compiler"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Online Compiler</a></li>-->
+<!-- Login -->
+<ul class="nav navbar-nav navbar-right nav_user login">
+<a href="#" id="toUserLogin" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login</a>
 </ul>
+<!-- Logged User -->
+<ul class="nav navbar-nav navbar-right nav_user loggedin">
+<li>
+   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id="loggedUserName">user</span><span class="caret"></span></a>
+  <ul class="dropdown-menu" role="menu">
+    <li data-toggle="modal" id="coderMenu" style="display: none;"><a href="/code/coder/">Coder</a></li>
+    <li data-toggle="modal" ><a href="/accounts">Accounts</a></li>
+    <li data-toggle="modal" ><a href="/accounts/logout">Logout</a></li>
+  </ul>
+</li>
+</ul>
+
+
     </div>
   </div>
 </nav>
+
+<!-- Hidden Models -->
+<section id="createWindow">
+
+</section>
+<section id="deleteWindow">
+
+</section>
+<section id="publishWindow">
+
+</section>
+
+<!-- Hidden Models Ends -->

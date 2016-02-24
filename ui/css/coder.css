@@ -1,0 +1,41 @@
+.create_button{
+    padding: 10px 30px;
+    margin: 1px;
+    background: #2196F3;
+    border: none;
+    font-size: 17px;
+    color: white;
+    font-weight: normal;
+    border-radius: 3px;
+}
+
+.dash_section{
+    border: 2px solid #FBFBFB;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+}
+.coderButtonHolder{
+    margin-top:10px;
+}
+.coder_button{
+    background: #F44336;
+    font-size: 14px !important;
+    margin: 0px 0px 0px 5px;
+    color: #FFF !important;
+    padding: 3px 7px;
+    border-radius: 3px;
+}
+
+.coder_button.edit{
+    background: #03A9F4;
+}
+.coder_button.delete{
+    background: #F44336;
+}
+.coder_button.publish{
+    background: #4CAF50;
+}
+
+
+/* Compiler */
+

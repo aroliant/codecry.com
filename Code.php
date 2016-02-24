@@ -1,9 +1,18 @@
 <?php
 
-$host		=	"";
-$username	=	"";
-$password	=	"";
-$database	=	"";
+if($GLOBALS['DEPLOY']){
+$host       =   "localhost";
+$username   =   "aroligpv_naive";
+$password   =   "Oxg1hsFZpZJO";
+$database   =   "aroligpv_pro_center87";
+}else{
+$host       =   "localhost";
+$username   =   "root";
+$password   =   "";
+$database   =   "aro_code";
+}
+
+
 
 $GLOBALS['EXTENSION']  = array(
     'java'  => '.java',
@@ -25,7 +34,7 @@ if ($GLOBALS['mysqli']->connect_error) {
 
 
 function make_link($raw){
-    return "https://www.aroliant.com/code/".$raw;
+    return $GLOBALS['BASE_URL'].$raw;
 }
 
 function get_program_from_language($lang){
@@ -103,5 +112,62 @@ while ( $data = $query->fetch_object()) {
 }
 
 return $dataOUT."</ul>";
+
+}
+
+
+/* Coder Function (Code Feeding Functions) */
+
+function get_user_drafts($username){
+
+
+$query=$GLOBALS['mysqli']->query("SELECT * FROM drafts  WHERE author='$username' ORDER BY dtime DESC");
+
+$DStore = array();
+$i=0;
+while ( $data = $query->fetch_object()) {
+    $DStore[$i]["id"]    = $data->id;
+    $DStore[$i]["title"]    = $data->title;
+    $DStore[$i]["author"]   = $data->author;
+    $DStore[$i]["time"]     = strtotime($data->dtime);
+    $DStore[$i]["lang"]     = $data->lang;
+    $DStore[$i]["link"]     = make_link($data->lang.'/'.$data->url_id);
+$i++;
+}
+
+return $DStore;
+}
+
+function create_program(){
+
+}
+
+function load_program($id){
+    $query = $GLOBALS['mysqli']->query("SELECT * FROM drafts WHERE id=$id");
+    $data = $query->fetch_object();
+    return $data;
+}
+
+function save_program(){
+
+}
+
+function publish_program(){
+
+}
+
+function move_to_trash_program(){
+
+}
+
+function check_url_link(){
+
+}
+
+function change_publish_state(){
+
+}
+
+function get_user_programs(){
 
 }
