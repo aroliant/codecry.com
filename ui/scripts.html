@@ -9,7 +9,7 @@ $('.nav-tabs a').click(function (e) {
 
 
 $("#livesearch").keyup(function(){
-  $("#autocompleter").load("http://codecry.com/livesearch?query="+ document.forms["search"]["query"].value );
+  $("#autocompleter").load("{{base_url}}livesearch?query="+ document.forms["search"]["query"].value );
 });
 
 

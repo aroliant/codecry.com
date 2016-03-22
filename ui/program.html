@@ -24,7 +24,7 @@
 <pre id="codestore" style="display:none;">{{program.content}}</pre>
 <div class="proButton">
 <button class="op" id="view">View Output</button>
-<a href="http://codecry.com/{{program.lang}}/{{program.url_id}}/download"><button class="cp" >Download</button></a>
+<a href="{{base_url}}{{program.lang}}/{{program.url_id}}/download"><button class="cp" >Download</button></a>
 <button class="com" id="compile">Compile</button>
 </div>
 
@@ -43,8 +43,8 @@
 </html>
 
 {% include 'scripts.html' %}
-<script type="text/javascript" src="http://codecry.com/ui/css/prettify/prettify.js"></script>
-<script type="text/javascript" src="http://codecry.com/ui/js/spin.min.js"></script>
+<script type="text/javascript" src="{{base_url}}ui/css/prettify/prettify.js"></script>
+<script type="text/javascript" src="{{base_url}}ui/js/spin.min.js"></script>
 <script type="text/javascript">
 
 function loaderShow(){

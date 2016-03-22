@@ -15,9 +15,9 @@ $GLOBALS['twig'] = new Twig_Environment($loader);
 $GLOBALS['twig']->addGlobal('base_url', $GLOBALS['BASE_URL']);
 
 
-$GLOBALS['twig'] = new Twig_Environment($loader, array(
-    'cache' => 'ui/cache/',
-));
+// $GLOBALS['twig'] = new Twig_Environment($loader, array(
+//     'cache' => 'ui/cache/',
+// ));
 
 
 
