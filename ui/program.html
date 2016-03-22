@@ -3,8 +3,10 @@
     <head>
         <title>{{title}}</title>
 {% include 'stylesheets.html' %}
+<link rel="stylesheet" href="https://cdn.rawgit.com/Aroliant/web/gh-pages/stylesheets/codecry/prettify.css" />
+
     </head>
-    <body style="background: #EEE;">
+    <body style="background: #EEE;" onload="prettyPrint()">
 
 {% include 'navigation.html' %}
 
@@ -17,12 +19,12 @@
 
 <div class="code_holder">
 <pre class="prettyprint" id="program" style="border:none;">
-    {{program.content}}
+{{program.content}}
 </pre>
 <pre id="codestore" style="display:none;">{{program.content}}</pre>
 <div class="proButton">
 <button class="op" id="view">View Output</button>
-<a href="{{base_url}}{{program.lang}}/{{program.url_id}}/download"><button class="cp" >Download</button></a>
+<a href="http://codecry.com/{{program.lang}}/{{program.url_id}}/download"><button class="cp" >Download</button></a>
 <button class="com" id="compile">Compile</button>
 </div>
 
@@ -39,10 +41,10 @@
 {% include 'footer.html' %}
     </body>
 </html>
-<script type="text/javascript" src="{{base_url}}ui/css/prettify/run_prettify.js"></script>
-<script type="text/javascript" src="{{base_url}}ui/js/spin.min.js"></script>
-{% include 'scripts.html' %}
 
+{% include 'scripts.html' %}
+<script type="text/javascript" src="http://codecry.com/ui/css/prettify/prettify.js"></script>
+<script type="text/javascript" src="http://codecry.com/ui/js/spin.min.js"></script>
 <script type="text/javascript">
 
 function loaderShow(){
@@ -77,7 +79,7 @@ function compile () {
 loaderShow();
 
 $.ajax({
-  url: '{{base_url}}compile?id={{program.id}}',
+  url: 'https://www.aroliant.com/code/compile?id={{program.id}}',
   type: 'GET',
   success: function(msg) {
     $('.displayHolder').show();

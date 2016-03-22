@@ -78,8 +78,9 @@
     margin: 0;
     padding: 10px !important;
     background: #FFF;
-    font-size: 14px;
+    font-size: 17px;
     font-family: Consolas,monospace;
+    font-weight: normal;
 }
 .proButton button{
     cursor: pointer;
@@ -173,15 +174,4 @@ footer ul li a{
 /* Colors */
 .dark-grey{
     color: #8B8888;
-}
-
-.nav_user{
-    display: none;
-}
-/*.dropdown-menu{
-    right: 36px !important;
-    top: 48px;
-}*/
-.dropdown-menu li a{
-    line-height:3 !important;
 }

@@ -1,6 +1,7 @@
-<script src="{{ base_url }}ui/js/jquery-2.1.4.min.js"></script>
-<script src="{{ base_url }}ui/bootstrap/js/bootstrap.min.js"></script>
-<script src="{{ base_url }}ui/js/html5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script type="text/javascript">
 $('.nav-tabs a').click(function (e) {
   $(this).tab('show')
@@ -8,7 +9,7 @@ $('.nav-tabs a').click(function (e) {
 
 
 $("#livesearch").keyup(function(){
-  $("#autocompleter").load("{{ base_url }}livesearch?query="+ document.forms["search"]["query"].value );
+  $("#autocompleter").load("http://codecry.com/livesearch?query="+ document.forms["search"]["query"].value );
 });
 
 
@@ -42,22 +43,6 @@ $(this).html(timeAgo(time));
 });
 
 
-$.post("/accounts/api/user","",function(data){
-    data =JSON.parse(data);
-    console.log(data);
-    if(data.valid==1){
-        $('.nav_user.loggedin').show();
-        loggedUserName.innerHTML = data.display_name;
-        if(data.coder==1||data.dx==1){
-            $("#coderMenu").show();
-        }
-    }else{
-        $('.nav_user.login').show();
-    }
-});
 
-toUserLogin.onclick = function(){
-    window.location = "/accounts?target=" + window.location.href;
-}
 
 </script>
