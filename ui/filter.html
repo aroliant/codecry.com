@@ -15,22 +15,8 @@
 
 <div class="container">
 
+{% include 'language-navigation.html' %}
 
-
-
-<div class="lang_navigation">
-<h2 style="font-size: 23px;">Languages</h2>
-<ul>
-    <li><span class="icon php"></span><a href="{{base_url}}language/php/">PHP</a><span class="count">{{stats.php}}</span></li>
-    <li><span class="icon c"></span><a href="{{base_url}}language/c/">C</a><span class="count">{{stats.c}}</span></li>
-    <li><span class="icon cpp"></span><a href="{{base_url}}language/cpp/">C++</a><span class="count">{{stats.cpp}}</span></li>
-    <li><span class="icon java"></span><a href="{{base_url}}language/java/">Java</a><span class="count">{{stats.java}}</span></li>
-    <li><span class="icon python"></span><a href="{{base_url}}language/python/">Python</a><span class="count">
-{{stats.python ? stats.python : 0 }}</span></li>
-    <li><span class="icon ruby"></span><a href="{{base_url}}language/ruby/">Ruby</a><span  class="count">{{stats.ruby ? stats.ruby : 0 }}</span></li>
-    <li><span class="icon javascript"></span><a href="{{base_url}}language/javascript/">JavaScript</a><span class="count">{{stats.javascript ? stats.javascript : 0 }}</span></li>
-</ul>
-</div>
 <div class="recent_updates">
 <h2 style="font-size: 23px;"> </h2>
     <ul>
@@ -50,6 +36,23 @@
         </li>
     {% endfor %}
     </ul>
+
+{% if pages > 0 %}
+
+<ul class="pagination pagination-sm">
+
+
+{% for i in 0..pages %}
+
+  <li {% if i == active_page %}
+  class="active"
+  {% endif %}><a  href="{{base_url}}language/{{language}}/{% if i > 0 %}?page={{ i }}{% else %}{% endif %}">{{ i+1 }}</a></li>
+
+{% endfor %}
+</ul>
+
+{% endif %}
+
 </div>
 </div>
 

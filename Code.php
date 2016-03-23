@@ -35,8 +35,10 @@ function make_link($raw){
     return $GLOBALS['BASE_URL'].$raw;
 }
 
-function get_program_from_language($lang){
-$query=$GLOBALS['mysqli']->query("SELECT * FROM code  WHERE lang='$lang' ORDER BY dtime DESC LIMIT 15");
+function get_program_from_language($lang,$offset){
+
+
+$query=$GLOBALS['mysqli']->query("SELECT * FROM code  WHERE lang='$lang' ORDER BY dtime DESC LIMIT $offset,10");
 
 $DStore = array();
 $i=0;
@@ -53,8 +55,9 @@ $i++;
 return $DStore;
 }
 
-function recent_programs(){
-$query=$GLOBALS['mysqli']->query("SELECT * FROM code  ORDER BY dtime DESC LIMIT 5");
+function recent_programs($offset){
+
+$query=$GLOBALS['mysqli']->query("SELECT * FROM code  ORDER BY dtime DESC LIMIT $offset,10");
 
 $DStore = array();
 $i=0;
@@ -113,4 +116,13 @@ while ( $data = $query->fetch_object()) {
 
 return $dataOUT."</ul>";
 
+}
+
+
+function totalPrograms(){
+    return $GLOBALS['mysqli']->query("SELECT COUNT(*) AS TOTAL FROM code")->fetch_object()->TOTAL;
+}
+
+function totalProgramsInLanguage($lang){
+    return $GLOBALS['mysqli']->query("SELECT COUNT(*) AS TOTAL FROM code WHERE lang='$lang'")->fetch_object()->TOTAL;
 }

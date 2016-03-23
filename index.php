@@ -20,25 +20,32 @@ $GLOBALS['twig']->addGlobal('base_url', $GLOBALS['BASE_URL']);
 //));
 
 
-
 \Slim\Slim::registerAutoloader();
-
-
-
 
 $app =  new \Slim\Slim();
 
 
-
 $app->get( '/', function() {
     $CodeStats = code_num_stats();
-    $RecentPrograms = recent_programs();
 
+    $totalPrograms = totalPrograms();
+
+    $pages = round($totalPrograms/10,0);
+
+    if(!isset($_GET['page'])){
+        $activePage = 0;
+    }else{
+        $activePage = $_GET['page'];
+    }
+
+    $RecentPrograms = recent_programs($activePage*10);
 
     echo $GLOBALS['twig']->render('index.html', array(
-        'title'=>'GET Everything to Code | Code Snippets Library',
+        'title'=>'Code Snippets Repository - CodeCry',
         'stats'=> $CodeStats,
-        'programs'=> $RecentPrograms));
+        'programs'=> $RecentPrograms,
+        'pages' => $pages,
+        'active_page' => $activePage));
 });
 
 
@@ -57,15 +64,26 @@ $app->get( '/livesearch',function(){
 #Language Filter
 $app->get('/language/:language/',function($language){
 
+    if(!isset($_GET['page'])){
+        $activePage = 0;
+    }else{
+        $activePage = $_GET['page'];
+    }
+
+    $pages = round(totalProgramsInLanguage($language)/10,0);
+
+
     $CodeStats = code_num_stats();
 
-    $Programs = get_program_from_language($language);
+    $Programs = get_program_from_language($language,$activePage*10);
 
     echo $GLOBALS['twig']->render('filter.html', array(
         'title'=>'Programs in '.$language.' - Aroliant CODE',
         'language'=>$language,
         'stats'=> $CodeStats,
-        'programs'=> $Programs
+        'programs'=> $Programs,
+        'pages' => $pages,
+        'active_page' => $activePage
         ));
 
 
