@@ -150,7 +150,9 @@
     color:#FFF;
 }
  #display{
-    color: white;
+    color: #ececec;
+    background: #000;
+    font-weight: bolder;
  }
  #loader{
     display: none;

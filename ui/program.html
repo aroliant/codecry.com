@@ -33,7 +33,7 @@
 <pre class="output">{{ program.output }}</pre>
 <div id="loader"></div>
 <div class="displayHolder" ><h2>Output : <span id="timeUpdate"></span></h2>
-<div id="display" ></div>
+<pre id="display" ></pre>
 </div>
 
 </div>
@@ -41,6 +41,7 @@
 {% include 'footer.html' %}
     </body>
 </html>
+
 
 {% include 'scripts.html' %}
 <script type="text/javascript" src="{{base_url}}ui/css/prettify/prettify.js"></script>
@@ -122,11 +123,13 @@ if(!connected){
 var lang = codestore.getAttribute('lang');
 
 if(lang == 'python'){
-    lang = 'python';
+    lang = 'python3';
+}else if(lang == 'php'){
+    lang = 'php5';
 }
 
 var data = {
-        data: codestore.innerHTML,
+        data: codestore.innerText,
         lang: lang,
         stdin: ""
     };

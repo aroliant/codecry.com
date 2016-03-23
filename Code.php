@@ -36,7 +36,7 @@ function make_link($raw){
 }
 
 function get_program_from_language($lang){
-$query=$GLOBALS['mysqli']->query("SELECT * FROM code  WHERE lang='$lang' ORDER BY dtime DESC LIMIT 10");
+$query=$GLOBALS['mysqli']->query("SELECT * FROM code  WHERE lang='$lang' ORDER BY dtime DESC LIMIT 15");
 
 $DStore = array();
 $i=0;
@@ -83,6 +83,7 @@ function get_program($lang,$url){
 
     $query = $GLOBALS['mysqli']->query("SELECT * FROM code WHERE lang='$lang' AND url_id='$url'");
     $data = $query->fetch_object();
+    $data->enc_content = $data->content;
     $data->content = htmlspecialchars_decode($data->content,ENT_QUOTES);
     return $data;
 }

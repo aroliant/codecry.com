@@ -15,9 +15,9 @@ $GLOBALS['twig'] = new Twig_Environment($loader);
 $GLOBALS['twig']->addGlobal('base_url', $GLOBALS['BASE_URL']);
 
 
-// $GLOBALS['twig'] = new Twig_Environment($loader, array(
+//$GLOBALS['twig'] = new Twig_Environment($loader, array(
 //     'cache' => 'ui/cache/',
-// ));
+//));
 
 
 
@@ -43,8 +43,6 @@ $app->get( '/', function() {
 
 
 
-
-
 #Live Search
 $app->get( '/livesearch',function(){
 
@@ -54,43 +52,6 @@ $app->get( '/livesearch',function(){
 
 });
 
-
-$app->get('/compiler/',function(){
-
-    readfile('compiler/index.html');
-
-
-});
-
-$app->get('/compile',function(){
-
-    $id = $_GET['id'];
-
-    $Program = get_program_from_id($id);
-
-
-    $Content = $Program->content;
-    $Lang = $Program->lang;
-
-if($Lang=="python"){
-    $compiler_link = "http://mercury.deploy.aroliant.com/compile/python2?code=".base64_encode($Content);
-
-}else{
-    $compiler_link = "http://mercury.deploy.aroliant.com/compile/".$Lang."?code=".base64_encode($Content);
-
-}
-
-$content = @file_get_contents($compiler_link);
-
-if($content === FALSE){
-    echo "Error occured !";
-}else{
-    echo $content;
-}
-
-
-
-});
 
 
 #Language Filter
