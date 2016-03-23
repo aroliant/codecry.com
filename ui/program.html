@@ -21,7 +21,7 @@
 <pre class="prettyprint" id="program" style="border:none;">
 {{program.content}}
 </pre>
-<pre id="codestore" style="display:none;">{{program.content}}</pre>
+<pre id="codestore" style="display:none;" lang="{{program.lang}}">{{program.content}}</pre>
 <div class="proButton">
 <button class="op" id="view">View Output</button>
 <a href="{{base_url}}{{program.lang}}/{{program.url_id}}/download"><button class="cp" >Download</button></a>
@@ -32,7 +32,7 @@
 <br/>
 <pre class="output">{{ program.output }}</pre>
 <div id="loader"></div>
-<div class="displayHolder" ><h2>Compiled [ <span id="timeUpdate"></span> ]:</h2>
+<div class="displayHolder" ><h2>Output : <span id="timeUpdate"></span></h2>
 <div id="display" ></div>
 </div>
 
@@ -45,7 +45,14 @@
 {% include 'scripts.html' %}
 <script type="text/javascript" src="{{base_url}}ui/css/prettify/prettify.js"></script>
 <script type="text/javascript" src="{{base_url}}ui/js/spin.min.js"></script>
+<script type="text/javascript" src="http://www.compile.work/includes/socket.io-1.4.5.js"></script>
 <script type="text/javascript">
+
+var socketCompiler = io('http://c1.aroliant.com:8082', {
+    autoConnect: false
+});
+
+
 
 function loaderShow(){
   $("#loader").show(500);
@@ -74,27 +81,62 @@ var opts = {
         var target = document.getElementById('loader');
         var spinner = new Spinner(opts).spin(target);
 
+var connected = false;
+
+
+socketCompiler.on('message', function(data) {
+
+    if (data.log) {
+        console.log(data.log);
+    } else if (JSON.parse(data).state) {
+
+    $('.displayHolder').show();
+
+        var msg = JSON.parse(data);
+
+        if (msg.state == 'success') {
+            display.innerHTML = msg.log;
+            loaderHide();
+        } else if (msg.state == 'error') {
+            display.innerHTML = msg.log;
+            loaderHide();
+        } else {
+            Log.hideLoader();
+            display.innerHTML = 'Unable to compile your Program';
+        }
+
+        $('#compile').attr('disabled', false);
+
+    }
+
+});
+
 function compile () {
+
+$('#compile').attr('disabled', true);
+
+if(!connected){
+    socketCompiler.connect();
+    connected = true;
+}
+var lang = codestore.getAttribute('lang');
+
+if(lang == 'python'){
+    lang = 'python';
+}
+
+var data = {
+        data: codestore.innerHTML,
+        lang: lang,
+        stdin: ""
+    };
+
+console.log(data);
+
+socketCompiler.emit('compile', data);
 
 loaderShow();
 
-$.ajax({
-  url: 'https://www.aroliant.com/code/compile?id={{program.id}}',
-  type: 'GET',
-  success: function(msg) {
-    $('.displayHolder').show();
-    $('#display').html(msg);
-    var d = new Date();
-    var time =d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+' '+d.getHours()+ ":" + d.getMinutes() + ":" + d.getSeconds();
-    $('#timeUpdate').html(time);
-    loaderHide();
-},
-error: function(msg) {
-    $('.displayHolder').show();
-  $('#display').html("Unable to connect Internet !");
-  loaderHide();
-}
-});
 }
 
 
