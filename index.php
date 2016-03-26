@@ -1,6 +1,6 @@
 <?php
 $GLOBALS['DEPLOY']  = false;
-$GLOBALS['BASE_URL'] = ''.($GLOBALS['DEPLOY']  ? "http://codecry.com" : "http://localhost/code/");
+$GLOBALS['BASE_URL'] = ''.($GLOBALS['DEPLOY']  ? "http://codecry.com/" : "http://localhost/code/");
 
 require_once 'functions.php';
 require 'Code.php';
@@ -141,4 +141,10 @@ $app->get('/:language/:url_id/download',function($language,$url_id){
 });
 
 
+$app->get('/legal/terms/',function(){
+    echo $GLOBALS['twig']->render('terms.html');
+});
+$app->get('/legal/privacy/',function(){
+    echo $GLOBALS['twig']->render('privacy.html');
+});
 $app->run();
