@@ -2,9 +2,9 @@
 
 if($GLOBALS['DEPLOY']){
 $host       =   "localhost";
-$username   =   "aroligpv_naive";
+$username   =   "aroliard_naive";
 $password   =   "Oxg1hsFZpZJO";
-$database   =   "aroligpv_pro_center87";
+$database   =   "aroliard_pro_center87";
 }else{
 $host       =   "localhost";
 $username   =   "root";
@@ -111,7 +111,7 @@ $query=$GLOBALS['mysqli']->query("SELECT * FROM code  WHERE title LIKE '%$keywor
 
 $dataOUT = "<ul>";
 while ( $data = $query->fetch_object()) {
-    $dataOUT .= "<li><a href='".$BASE_URL.$data->lang."/".$data->url_id."' >".$data->title."</a></li>";
+    $dataOUT .= "<li><a href='http://codecry.com/".$data->lang."/".$data->url_id."' >".$data->title."</a></li>";
 }
 
 return $dataOUT."</ul>";
