@@ -2,151 +2,125 @@
 <html>
     <head>
         <title>{{title}}</title>
-{% include 'stylesheets.html' %}
-<link rel="stylesheet" href="https://cdn.rawgit.com/Aroliant/web/gh-pages/stylesheets/codecry/prettify.css" />
-
+        {% include 'stylesheets.html' %}
+        <link rel="stylesheet" href="https://cdn.rawgit.com/Aroliant/web/gh-pages/stylesheets/codecry/prettify.css" />
     </head>
-    <body style="background: #EEE;" onload="prettyPrint()">
+    <body  onload="prettyPrint()">
+        {% include 'navigation.html' %}
+        <div class="header">
+            <h2>{{ program.title }}</h2>
+        </div>
+        <div class="container">
+            <div class="code_holder programHolder">
+            {% if program.description != '' %}
+                <p></p>
+            {% endif %}
+                <div class="topHolder">
+                    <h2>Source code :</h2>
+                    <a href="{{base_url}}{{program.lang}}/{{program.url_id}}/download"><button class="download" >Download</button></a>
+                </div>
+                <pre class="prettyprint" id="program" style="border:none;">{{program.content}}</pre>
+            <pre id="codestore" style="display:none;" lang="{{program.lang}}">{{program.content}}</pre>
+            <div class="outputHolder">
+                <h2>Output :</h2>
+            <pre class="output">{{ program.output }}</pre>
+            </div>
+            {% if program.notes != '' %}
+            <div class="notesHolder">
+                <h2>Notes :</h2>
+                <div class="notes">{{ program.notes }}</div>
+            </div>
+            {% endif %}
 
-{% include 'navigation.html' %}
-
-<div class="header">
-    <h2>{{ program.title }}</h2>
-</div>
-
-
-<div class="container">
-
-<div class="code_holder">
-<pre class="prettyprint" id="program" style="border:none;">
-{{program.content}}
-</pre>
-<pre id="codestore" style="display:none;" lang="{{program.lang}}">{{program.content}}</pre>
-<div class="proButton">
-<button class="op" id="view">View Output</button>
-<a href="{{base_url}}{{program.lang}}/{{program.url_id}}/download"><button class="cp" >Download</button></a>
-<button class="com" id="compile">Compile</button>
-</div>
-
-</div>
-<br/>
-<pre class="output">{{ program.output }}</pre>
-<div id="loader"></div>
-<div class="displayHolder" ><h2>Output : <span id="timeUpdate"></span></h2>
+    </div>
+    <br/>
+    <div id="loader"></div>
+    <div class="displayHolder" >
+    <h2>Output : <span id="timeUpdate"></span></h2>
 <pre id="display" ></pre>
 </div>
-
 </div>
-
 {% include 'footer.html' %}
-    </body>
+</body>
 </html>
-
-
 {% include 'scripts.html' %}
 <script type="text/javascript" src="{{base_url}}ui/css/prettify/prettify.js"></script>
 <script type="text/javascript" src="{{base_url}}ui/js/spin.min.js"></script>
 <script type="text/javascript" src="http://www.compile.work/includes/socket.io-1.4.5.js"></script>
 <script type="text/javascript">
-
 var socketCompiler = io('http://c1.aroliant.com:8082', {
-    autoConnect: false
+autoConnect: false
 });
-
-
-
 function loaderShow(){
-  $("#loader").show(500);
+$("#loader").show(500);
 }
 function loaderHide(){
-  $("#loader").hide(500);
+$("#loader").hide(500);
 }
-
 var opts = {
-            lines: 10, // The number of lines to draw
-            length: 7, // The length of each line
-            width: 4, // The line thickness
-            radius: 10, // The radius of the inner circle
-            corners: 1, // Corner roundness (0..1)
-            rotate: 0, // The rotation offset
-            color: '#FFF', // #rgb or #rrggbb
-            speed: 1, // Rounds per second
-            trail: 60, // Afterglow percentage
-            shadow: false, // Whether to render a shadow
-            hwaccel: false, // Whether to use hardware acceleration
-            className: 'spinner', // The CSS class to assign to the spinner
-            zIndex: 2e9, // The z-index (defaults to 2000000000)
-            top: 25, // Top position relative to parent in px
-            left: 25 // Left position relative to parent in px
-        };
-        var target = document.getElementById('loader');
-        var spinner = new Spinner(opts).spin(target);
-
+lines: 10, // The number of lines to draw
+length: 7, // The length of each line
+width: 4, // The line thickness
+radius: 10, // The radius of the inner circle
+corners: 1, // Corner roundness (0..1)
+rotate: 0, // The rotation offset
+color: '#FFF', // #rgb or #rrggbb
+speed: 1, // Rounds per second
+trail: 60, // Afterglow percentage
+shadow: false, // Whether to render a shadow
+hwaccel: false, // Whether to use hardware acceleration
+className: 'spinner', // The CSS class to assign to the spinner
+zIndex: 2e9, // The z-index (defaults to 2000000000)
+top: 25, // Top position relative to parent in px
+left: 25 // Left position relative to parent in px
+};
+var target = document.getElementById('loader');
+var spinner = new Spinner(opts).spin(target);
 var connected = false;
-
-
 socketCompiler.on('message', function(data) {
-
-    if (data.log) {
-        console.log(data.log);
-    } else if (JSON.parse(data).state) {
-
-    $('.displayHolder').show();
-
-        var msg = JSON.parse(data);
-
-        if (msg.state == 'success') {
-            display.innerHTML = msg.log;
-            loaderHide();
-        } else if (msg.state == 'error') {
-            display.innerHTML = msg.log;
-            loaderHide();
-        } else {
-            Log.hideLoader();
-            display.innerHTML = 'Unable to compile your Program';
-        }
-
-        $('#compile').attr('disabled', false);
-
-    }
-
+if (data.log) {
+console.log(data.log);
+} else if (JSON.parse(data).state) {
+$('.displayHolder').show();
+var msg = JSON.parse(data);
+if (msg.state == 'success') {
+display.innerHTML = msg.log;
+loaderHide();
+} else if (msg.state == 'error') {
+display.innerHTML = msg.log;
+loaderHide();
+} else {
+Log.hideLoader();
+display.innerHTML = 'Unable to compile your Program';
+}
+$('#compile').attr('disabled', false);
+}
 });
-
 function compile () {
-
 $('#compile').attr('disabled', true);
-
 if(!connected){
-    socketCompiler.connect();
-    connected = true;
+socketCompiler.connect();
+connected = true;
 }
 var lang = codestore.getAttribute('lang');
-
 if(lang == 'python'){
-    lang = 'python3';
+lang = 'python3';
 }else if(lang == 'php'){
-    lang = 'php5';
+lang = 'php5';
 }
-
 var data = {
-        data: codestore.innerText,
-        lang: lang,
-        stdin: ""
-    };
-
+data: codestore.innerText,
+lang: lang,
+stdin: ""
+};
 console.log(data);
-
 socketCompiler.emit('compile', data);
-
 loaderShow();
-
 }
-
-
 $("#compile").click(function(){
-  compile();
+compile();
 });
 $('#view').click(function(){
-    $('.output').show();
+$('.output').show();
 });
 </script>
