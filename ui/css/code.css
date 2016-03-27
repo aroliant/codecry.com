@@ -114,6 +114,8 @@
 }
 .code_holder p {
     margin: 20px 0 20px 0;
+    font-size: 18px;
+    line-height: 30px;
 }
 .code_holder pre {
     margin: 0;
@@ -188,6 +190,9 @@
     border-radius: 0 0 2px 2px;
     background: #f9f9f9;
     padding: 10px;
+    border: none !important;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 17px;
 }
 .outputHolder pre {
     border-radius: 0 0 2px 2px;

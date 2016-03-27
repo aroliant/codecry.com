@@ -24,5 +24,5 @@ function include_dir($path) {
     }
 }
 
-date_default_timezone_set('Asia/Kolkata');
+date_default_timezone_set("Etc/Greenwich");
 ?>
