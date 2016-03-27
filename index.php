@@ -30,7 +30,7 @@ $app->get( '/', function() {
 
     $totalPrograms = totalPrograms();
 
-    $pages = round($totalPrograms/10,0);
+    $pages = ceil($totalPrograms/10)-1;
 
     if(!isset($_GET['page'])){
         $activePage = 0;
@@ -70,7 +70,7 @@ $app->get('/language/:language/',function($language){
         $activePage = $_GET['page'];
     }
 
-    $pages = round(totalProgramsInLanguage($language)/10,0);
+    $pages = ceil(totalProgramsInLanguage($language)/10)-1;
 
 
     $CodeStats = code_num_stats();
