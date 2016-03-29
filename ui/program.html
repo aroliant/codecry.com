@@ -3,7 +3,12 @@
     <head>
         <title>{{title}}</title>
         {% include 'stylesheets.html' %}
-        <link rel="stylesheet" href="https://cdn.rawgit.com/Aroliant/web/gh-pages/stylesheets/codecry/prettify.css" />
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/Aroliant/web/gh-pages/stylesheets/codecry/prettify.css" />
+
+    <meta name="description" content="{{ program.description }}">
+    <meta name="keywords" content="{{ program.keywords }}">
+
     </head>
     <body  onload="prettyPrint()">
         {% include 'navigation.html' %}
