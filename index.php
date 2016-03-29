@@ -78,8 +78,8 @@ $app->get('/language/:language/',function($language){
     $Programs = get_program_from_language($language,$activePage*10);
 
     echo $GLOBALS['twig']->render('filter.html', array(
-        'title'=>'Programs in '.$language.' - Aroliant CODE',
-        'language'=>$language,
+        'title'=>'Programs in '.ucfirst($language).' - CodeCry.com',
+        'language'=>ucfirst($language),
         'stats'=> $CodeStats,
         'programs'=> $Programs,
         'pages' => $pages,
@@ -98,7 +98,7 @@ $app->get('/:language/:url_id',function($language,$url_id){
     $Program =   (array) $Program;
 
     echo $GLOBALS['twig']->render('program.html', array(
-        'title'=>$Program['title'].' - '.$Program['lang'],
+        'title'=>$Program['title'].' in '.ucfirst($Program['lang']),
         'program'=>$Program));
 
 
@@ -107,6 +107,11 @@ $app->get('/:language/:url_id',function($language,$url_id){
 
 #Program Download
 $app->get('/:language/:url_id/download',function($language,$url_id){
+
+if(!empty($_SERVER['HTTP_USER_AGENT']) and preg_match('~(bot|crawl)~i', $_SERVER['HTTP_USER_AGENT'])){
+header("HTTP/1.0 404 Not Found");
+exit();
+}
 
     $Program = get_program($language,$url_id);
 
