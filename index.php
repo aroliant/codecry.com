@@ -146,6 +146,19 @@ exit();
 });
 
 
+$app->get('/search',function(){
+
+if(!empty($_SERVER['HTTP_USER_AGENT']) and preg_match('~(bot|crawl)~i', $_SERVER['HTTP_USER_AGENT'])){
+header("HTTP/1.0 404 Not Found");
+exit();
+}
+
+
+
+ echo   $_GET['query'];
+
+});
+
 $app->get('/legal/terms/',function(){
     echo $GLOBALS['twig']->render('terms.html');
 });
