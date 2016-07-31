@@ -82,52 +82,58 @@
     position: relative;
     top: -10px;
 }
-.recent_updates span.tag {
+span.tag {
     background: url('../img/langs.png');
     display: inline-block;
     width: 40px;
     height: 30px;
     background-size: 250px auto;
 }
-.recent_updates span.tag.php {
+span.tag.php {
     background-position: 0px 5px;
 }
-.recent_updates span.tag.c {
-    background-position: 205px 3px;
+span.tag.c {
+    background-position: 208px 3px;
 }
-.recent_updates span.tag.cpp {
+span.tag.cpp {
     background-position: 82px 3px;
 }
-.recent_updates span.tag.java {
+span.tag.java {
     background-position: 0px 112px;
 }
-.recent_updates span.tag.python {
+span.tag.python {
     background-position: 40px -44px;
 }
-.recent_updates span.tag.ruby {
+span.tag.ruby {
     background-position: 165px 3px;
 }
 .comments{
-    width: 90%;
     margin: 0 auto;
     border-top: 1px solid #f1f1f1;
     margin-top: 60px;
     padding-top: 40px;
     margin-bottom: 60px;
-    
 }
 .comments h2{
-	font-size: 19px;
+    font-size: 19px;
 }
-.code_holder {
+.holder{
     width: 90%;
+    min-width: 800px;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 0 auto;
+    padding: 0;
+}
+
+.code_holder {
+    width: 80%;
+    display: inline-block;
 }
 .code_holder p {
     margin: 20px 0 20px 0;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 30px;
+    height: 70px;
 }
 .code_holder pre {
     margin: 0;
@@ -170,6 +176,61 @@
     display: inline-block;
     margin: 5px 0 5px 4px;
     padding: 5px;
+}
+
+.right{
+    width: 19%;
+    height: 120px;
+    display: inline-block;
+    position: relative;
+    float: right;
+    top: 110px;
+}
+
+.right h2{
+    font-size: 19px;
+    display: inline-block;
+    margin: 0;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+    background: #f5f5f5;
+    width: 100%;
+}
+
+.right .available{
+    border: 1px solid #ddd !important;
+    margin-bottom: 15px;
+}
+
+.right .related{
+    border: 1px solid #ddd !important;
+}
+
+.right .abox{
+    padding: 5px;
+}
+.right .abox span{
+    border-radius: 5px;
+    box-shadow: 2px 1px 4px #dedada;
+}
+.right .rbox{
+
+}
+.right .random_picks{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.right .random_picks li{
+
+}
+.right .random_picks li a{
+    margin: 5px;
+    padding: 2px;
+    background: #FFF;
+    display: block;
+    text-decoration: none;
+    border: 1px solid #EEE;
 }
 .proButton button {
     cursor: pointer;

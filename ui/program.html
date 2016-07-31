@@ -26,6 +26,9 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>  
+        
+        <div class="holder">
+            
             <div class="code_holder programHolder">
             {% if program.description != '' %}
                 <p>{{ program.description }}</p>
@@ -36,30 +39,62 @@
                 </div>
                 <pre class="prettyprint" id="program" style="border:none;">{{program.content}}</pre>
             <pre id="codestore" style="display:none;" lang="{{program.lang}}">{{program.content}}</pre>
-            <div class="outputHolder">
-                <h2>Output :</h2>
-            <pre class="output">{{ program.output }}</pre>
-            </div>
+                <div class="outputHolder">
+                    <h2>Output :</h2>
+                <pre class="output">{{ program.output }}</pre>
+                </div>
             {% if program.notes != '' %}
-            <div class="notesHolder">
-                <h2>Notes :</h2>
-                <pre class="notes">{{ program.notes }}</pre>
-            </div>
+                <div class="notesHolder">
+                    <h2>Notes :</h2>
+                    <pre class="notes">{{ program.notes }}</pre>
+                </div>
             {% endif %}
 
-    </div>
-    <br/>
-    <div id="loader"></div>
-    <div class="displayHolder" >
-    <h2>Output : <span id="timeUpdate"></span></h2>
-<pre id="display" ></pre>
-</div>
-<div class="comments">
-<h2>Comments :</h2>
-<div class="fb-comments" data-href="http://codecry.com/{{program.lang}}/{{program.url_id}}" data-num-posts="5" data-width="100%" data-colorscheme="light" data-mobile="false">
-</div>
+            
+            <br/>
+            <div id="loader"></div>
+            <div class="displayHolder" >
+            <h2>Output : <span id="timeUpdate"></span></h2>
+            <pre id="display" ></pre>
+            </div>
+            <div class="comments">
+            <h2>Comments :</h2>
+            <div class="fb-comments" data-href="http://codecry.com/{{program.lang}}/{{program.url_id}}" data-num-posts="5" data-width="100%" data-colorscheme="light" data-mobile="false">
+            </div>
+            
+        </div>
+        </div>
 
-</div>
+    <div class="right">
+
+        {% if alt_available > 0 %}
+        <div class="available">
+            <h2>Also available on</h2>
+            <div class="abox">
+                {% for alt in alts %}                        
+                    <a href="{{base_url}}{{ alt }}/{{ program.url_id }}"><span class="tag {{ alt }}"></span></a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="related">
+            <h2>Random Picks</h2>
+            <div class="rbox">
+            <ul class="random_picks">
+                {% for r in random %} 
+                <li>
+                    <a href="{{base_url}}{{r.lang}}/{{r.url_id}}">
+                        {{r.title}} in {{r.lang}}
+                    </a>   
+                </li>                 
+                {% endfor %}
+            </ul>
+            </div>
+        </div>
+    </div>
+
+        </div>
 </div>
 {% include 'footer.html' %}
 

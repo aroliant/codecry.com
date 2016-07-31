@@ -126,3 +126,39 @@ function totalPrograms(){
 function totalProgramsInLanguage($lang){
     return $GLOBALS['mysqli']->query("SELECT COUNT(*) AS TOTAL FROM code WHERE lang='$lang'")->fetch_object()->TOTAL;
 }
+
+
+function alt_available($url_id){
+
+$query=$GLOBALS['mysqli']->query("SELECT lang FROM code  WHERE url_id = '$url_id'");
+
+$DStore = array();
+
+while ( $data = $query->fetch_object()) {
+
+array_push($DStore,$data->lang);
+
+}
+
+return $DStore;
+}
+
+function random_programs(){
+
+$query = $GLOBALS['mysqli']->query("SELECT * FROM code ORDER BY RAND() LIMIT 5");
+
+$DStore = array();
+
+while ( $data = $query->fetch_object()) {
+
+array_push($DStore,array(
+    'lang' => $data->lang,
+    'title' => $data->title,
+    'url_id' => $data->url_id
+    ));
+
+}
+
+return $DStore;
+
+}

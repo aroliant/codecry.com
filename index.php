@@ -97,9 +97,20 @@ $app->get('/:language/:url_id',function($language,$url_id){
 
     $Program =   (array) $Program;
 
+    $Alt = (array) alt_available($url_id);
+
+    $Alt = array_diff($Alt, array($language));
+
+    $Alt_size = sizeof($Alt);
+
+    $random = random_programs();
+
     echo $GLOBALS['twig']->render('program.html', array(
-        'title'=>$Program['title'].' in '.ucfirst($Program['lang']),
-        'program'=>$Program));
+        'title' => $Program['title'].' in '.ucfirst($Program['lang']),
+        'program' => $Program,
+        'alt_available' => $Alt_size,
+        'alts' => $Alt,
+        'random' => $random));
 
 
 });
