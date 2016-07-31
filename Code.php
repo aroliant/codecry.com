@@ -145,7 +145,7 @@ return $DStore;
 
 function random_programs(){
 
-$query = $GLOBALS['mysqli']->query("SELECT * FROM code ORDER BY RAND() LIMIT 5");
+$query = $GLOBALS['mysqli']->query("SELECT * FROM code ORDER BY RAND() LIMIT 10");
 
 $DStore = array();
 
