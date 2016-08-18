@@ -80,6 +80,10 @@ $app->get('/language/:language/',function($language){
     //Changing cpp to C++
     if($language=='cpp'){
         $language = "C++";
+    }elseif($language == 'csharp'){
+        $language = "C#";
+    }elseif($language = "objc"){
+        $language = "Objective-C";
     }
 
     echo $GLOBALS['twig']->render('filter.html', array(
@@ -113,6 +117,10 @@ $app->get('/:language/:url_id',function($language,$url_id){
     //Changing cpp to C++
     if($Program['lang']=='cpp'){
         $Program['lang'] = "C++";
+    }elseif($Program['lang'] == 'csharp'){
+        $Program['lang'] = "C#";
+    }elseif($Program['lang'] = "objc"){
+        $Program['lang'] = "Objective-C";
     }
 
     echo $GLOBALS['twig']->render('program.html', array(

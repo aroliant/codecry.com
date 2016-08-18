@@ -107,6 +107,35 @@ span.tag.python {
 span.tag.ruby {
     background-position: 165px 3px;
 }
+span.tag.javascript {
+    background-position: 125px -100px;
+}
+span.tag.perl {
+    background-position: 166px -99px;
+}
+span.tag.csharp {
+    background-position: 130px 3px;
+    background-size: 261px auto !important;
+}
+span.tag.objc {
+    background-position: 87px -31px;
+    background-size: 275px auto !important;
+}
+span.tag.go {
+    background-position: 93px -62px;
+    background-size: 302px auto !important;
+}
+span.tag.swift {
+    background-position: 86px 35px;
+    background-size: 265px auto !important;
+}
+span.tag.ocaml {
+    background-position: 125px -48px;
+}
+span.tag.clojure {
+    background-position: 37px 34px;
+    background-size: 271px auto !important;
+}
 .comments{
     margin: 0 auto;
     border-top: 1px solid #f1f1f1;

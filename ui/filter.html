@@ -9,7 +9,7 @@
 {% include 'navigation.html' %}
 
 <div class="header">
-    <h2>Browse : {{ language }}</h2>
+    <h2>Programs in {{ language }}</h2>
 </div>
 
 
@@ -41,12 +41,17 @@
 
 <ul class="pagination pagination-sm">
 
+{% if language == 'C++' %}
+
+{% set language = 'cpp' %}
+
+{% endif %}
 
 {% for i in 0..pages %}
 
   <li {% if i == active_page %}
   class="active"
-  {% endif %}><a  href="{{base_url}}language/{{language}}/{% if i > 0 %}?page={{ i }}{% else %}{% endif %}">{{ i+1 }}</a></li>
+  {% endif %}><a  href="{{base_url}}language/{{language|lower}}/{% if i > 0 %}?page={{ i }}{% else %}{% endif %}">{{ i+1 }}</a></li>
 
 {% endfor %}
 </ul>
