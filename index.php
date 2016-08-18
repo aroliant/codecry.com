@@ -77,6 +77,11 @@ $app->get('/language/:language/',function($language){
 
     $Programs = get_program_from_language($language,$activePage*10);
 
+    //Changing cpp to C++
+    if($language=='cpp'){
+        $language = "C++";
+    }
+
     echo $GLOBALS['twig']->render('filter.html', array(
         'title'=>'Programs in '.ucfirst($language).' - CodeCry.com',
         'language'=>ucfirst($language),
@@ -104,6 +109,11 @@ $app->get('/:language/:url_id',function($language,$url_id){
     $Alt_size = sizeof($Alt);
 
     $random = random_programs();
+
+    //Changing cpp to C++
+    if($Program['lang']=='cpp'){
+        $Program['lang'] = "C++";
+    }
 
     echo $GLOBALS['twig']->render('program.html', array(
         'title' => $Program['title'].' in '.ucfirst($Program['lang']),
