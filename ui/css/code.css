@@ -353,7 +353,10 @@ footer ul li a {
     margin: 0 auto;
     display: block;
     text-align: center;
-    width: 250px;
+    width: 400px;
+}
+.pagination a{
+    font-size: 16px !important;
 }
 .ppolicy {
     font-family: arial, sans-serif;
