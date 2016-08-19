@@ -46,7 +46,7 @@
             {% if program.notes != '' %}
                 <div class="notesHolder">
                     <h2>Notes :</h2>
-                    <pre class="notes">{{ program.notes }}</pre>
+                    <div class="notes">{{ program.notes }}</div>
                 </div>
             {% endif %}
 
@@ -84,8 +84,9 @@
             <ul class="random_picks">
                 {% for r in random %} 
                 <li>
+                    <span class="tag {{ r.lang }}"></span>
                     <a href="{{base_url}}{{r.lang}}/{{r.url_id}}">
-                        {{r.title}} in {{r.lang}}
+                        {{r.title}} in {{r.legal_lang}}                    
                     </a>   
                 </li>                 
                 {% endfor %}
