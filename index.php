@@ -82,7 +82,7 @@ $app->get('/language/:language/',function($language){
         $language = "C++";
     }elseif($language == 'csharp'){
         $language = "C#";
-    }elseif($language = "objc"){
+    }elseif($language == "objc"){
         $language = "Objective-C";
     }
 
@@ -119,7 +119,7 @@ $app->get('/:language/:url_id',function($language,$url_id){
         $Program['lang'] = "C++";
     }elseif($Program['lang'] == 'csharp'){
         $Program['lang'] = "C#";
-    }elseif($Program['lang'] = "objc"){
+    }elseif($Program['lang'] == "objc"){
         $Program['lang'] = "Objective-C";
     }
 

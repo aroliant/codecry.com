@@ -151,10 +151,19 @@ $DStore = array();
 
 while ( $data = $query->fetch_object()) {
 
+    if($data->lang == "cpp"){
+        $legal_lang = "C++";
+    }else{
+        $legal_lang = ucfirst($data->lang);
+    }
+
+    
+
 array_push($DStore,array(
     'lang' => $data->lang,
     'title' => $data->title,
-    'url_id' => $data->url_id
+    'url_id' => $data->url_id,
+    'legal_lang' => $legal_lang
     ));
 
 }
@@ -162,3 +171,9 @@ array_push($DStore,array(
 return $DStore;
 
 }
+
+/* Programs by Language Page Meta Description */
+
+$description = array(
+    "c" => "C Programs",
+    "cpp" => "");
