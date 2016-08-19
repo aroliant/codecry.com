@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+{% include 'stylesheets.html' %}
+    </head>
+    <body>
+
+{% include 'navigation.html' %}
+
+<div class="header">
+    <h2> Showing results for <b>{{search_query}}</b></h2>
+</div>
+
+
+<div class="container">
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Compile.work right add -->
+<ins class="adsbygoogle"
+     style="display:block;width:900px;height:120px;margin:0 auto"
+     data-ad-client="ca-pub-3383219994768856"
+     data-ad-slot="2578756928"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="search_results_holder">
+    <ul>
+    {% for program in programs %}
+        <li>
+            <h2 class=""><a href="{{ program.link }}">{{ program.title }}</a></h2>
+            <div class="clearfix">
+                <span class="tag {{ program.lang }}"></span>
+                <span class="author">{{ program.author }}</span>
+                <span class="time" time="{{ program.time }}"></span>
+            </div>
+            <hr class="divider"></hr>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
+
+
+</div>
+
+{% include 'footer.html' %}
+    </body>
+</html>
+{% include 'scripts.html' %}

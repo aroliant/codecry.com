@@ -182,11 +182,27 @@ header("HTTP/1.0 404 Not Found");
 exit();
 }
 
+$search_query =  $_GET['query'];
 
+$query = $GLOBALS['mysqli']->query("SELECT * FROM code WHERE title LIKE '%$search_query%' LIMIT 20");
 
- echo   $_GET['query'];
+$programs = array();
 
+while($data = $query->fetch_object()){
+    array_push($programs,array(
+        "lang" => $data->lang,
+        "title" => $data->title,
+        "time" => strtotime($data->dtime),
+        "link" => make_link($data->lang.'/'.$data->url_id),
+        "url_id" => $data->url_id));
+}
+
+echo $GLOBALS['twig']->render('search.html', array(
+        'title'=> $search_query .' - Search | CodeCry.com',
+        'programs'=> $programs,
+        'search_query' => $search_query));
 });
+
 
 $app->get('/legal/terms/',function(){
     echo $GLOBALS['twig']->render('terms.html');
