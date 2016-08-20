@@ -5,8 +5,9 @@ $GLOBALS['BASE_URL'] = ''.($GLOBALS['DEPLOY']  ? "http://codecry.com/" : "http:/
 require_once 'functions.php';
 require 'Code.php';
 
-require 'vendor/autoload.php';
+require 'libs/Parsedown.php';
 
+require 'vendor/autoload.php';
 
 Twig_Autoloader::register();
 
@@ -113,6 +114,11 @@ $app->get('/:language/:url_id',function($language,$url_id){
     $Alt_size = sizeof($Alt);
 
     $random = random_programs();
+
+    $Parsedown = new Parsedown();
+    $Parsedown->setBreaksEnabled(true);
+    $Parsedown->setMarkupEscaped(true);
+    $Program['notes'] = $Parsedown->text($Program['notes']);
 
     //Changing cpp to C++
     if($Program['lang']=='cpp'){

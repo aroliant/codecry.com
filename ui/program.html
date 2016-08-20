@@ -31,7 +31,7 @@
             
             <div class="code_holder programHolder">
             {% if program.description != '' %}
-                <p>{{ program.description }}</p>
+                <p class="description">{{ program.description }}</p>
             {% endif %}
                 <div class="topHolder">
                     <h2>Source code :</h2>
@@ -43,10 +43,11 @@
                     <h2>Output :</h2>
                 <pre class="output">{{ program.output }}</pre>
                 </div>
+                
             {% if program.notes != '' %}
                 <div class="notesHolder">
-                    <h2>Notes :</h2>
-                    <div class="notes">{{ program.notes }}</div>
+                    <h2>Notes :</h2>{% autoescape false %}
+                    <div class="notes">{{ program.notes }}</div>{% endautoescape %}
                 </div>
             {% endif %}
 

@@ -158,14 +158,14 @@ span.tag.clojure {
     width: 75%;
     display: inline-block;
 }
-.code_holder p {
+.code_holder p.description {
     margin: 20px 0 20px 0;
     font-size: 16px;
     line-height: 30px;
     height: 70px;
     font-family: "Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-.code_holder pre {
+.code_holder pre.output, pre#program {
     margin: 0;
     padding: 10px !important;
     background: #fff;

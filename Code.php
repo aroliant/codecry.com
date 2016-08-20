@@ -88,6 +88,7 @@ function get_program($lang,$url){
     $data = $query->fetch_object();
     $data->enc_content = $data->content;
     $data->content = htmlspecialchars_decode($data->content,ENT_QUOTES);
+    $data->notes = htmlspecialchars_decode($data->notes,ENT_QUOTES);
     return $data;
 }
 
