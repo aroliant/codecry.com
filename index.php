@@ -106,6 +106,8 @@ $app->get('/:language/:url_id',function($language,$url_id){
     $Program = get_program($language,$url_id);
 
     $Program =   (array) $Program;
+    
+    $Program['output'] = htmlspecialchars_decode($Program['output']);
 
     $Alt = (array) alt_available($url_id);
 
