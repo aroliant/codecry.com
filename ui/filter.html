@@ -9,7 +9,7 @@
 {% include 'navigation.html' %}
 
 <div class="header">
-    <h2>Programs in {{ language }}</h2>
+    <h2>Programs in {{ lang_legal }}</h2>
 </div>
 
 
@@ -26,7 +26,7 @@
 
 
         <li>
-            <h2 class=""><a href="{{ program.link }}">{{ program.title }}</a></h2>
+            <h2 class=""><a href="{{ program.link }}">{{ program.title }} in {{ program.lang_legal }}</a></h2>
             <div class="clearfix">
                 <span class="tag {{ program.lang }}"></span>
                 <span class="author">{{ program.author }}</span>
@@ -41,11 +41,6 @@
 
 <ul class="pagination pagination-sm">
 
-{% if language == 'C++' %}
-
-{% set language = 'cpp' %}
-
-{% endif %}
 
 {% for i in 0..pages %}
 

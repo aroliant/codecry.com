@@ -13,7 +13,7 @@
     <body  onload="prettyPrint()">
         {% include 'navigation.html' %}
         <div class="header">
-            <h2>{{ program.title }}</h2>
+            <h2>{{ program.title }} in {{ program.lang_legal }}</h2>
         </div>
         <div class="container">
         
@@ -87,7 +87,7 @@
                 <li>
                     <span class="tag {{ r.lang }}"></span>
                     <a href="{{base_url}}{{r.lang}}/{{r.url_id}}">
-                        {{r.title}} in {{r.legal_lang}}                    
+                        {{r.title}} in {{r.lang_legal}}                    
                     </a>   
                 </li>                 
                 {% endfor %}

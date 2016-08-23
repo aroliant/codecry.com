@@ -78,18 +78,14 @@ $app->get('/language/:language/',function($language){
 
     $Programs = get_program_from_language($language,$activePage*10);
 
-    //Changing cpp to C++
-    if($language=='cpp'){
-        $language = "C++";
-    }elseif($language == 'csharp'){
-        $language = "C#";
-    }elseif($language == "objc"){
-        $language = "Objective-C";
-    }
+    //Changing Full Name
+
+    $lang_legal = toFullName($language);
 
     echo $GLOBALS['twig']->render('filter.html', array(
         'title'=>'Programs in '.ucfirst($language).' - CodeCry.com',
-        'language'=>ucfirst($language),
+        'language'=>$language,
+        'lang_legal' => $lang_legal,
         'stats'=> $CodeStats,
         'programs'=> $Programs,
         'pages' => $pages,
@@ -120,16 +116,7 @@ $app->get('/:language/:url_id',function($language,$url_id){
     $Parsedown = new Parsedown();
     $Parsedown->setBreaksEnabled(true);
     $Parsedown->setMarkupEscaped(true);
-    $Program['notes'] = $Parsedown->text($Program['notes']);
-
-    //Changing cpp to C++
-    if($Program['lang']=='cpp'){
-        $Program['lang'] = "C++";
-    }elseif($Program['lang'] == 'csharp'){
-        $Program['lang'] = "C#";
-    }elseif($Program['lang'] == "objc"){
-        $Program['lang'] = "Objective-C";
-    }
+    $Program['notes'] = $Parsedown->text($Program['notes']); 
 
     echo $GLOBALS['twig']->render('program.html', array(
         'title' => $Program['title'].' in '.ucfirst($Program['lang']),
@@ -199,6 +186,7 @@ $programs = array();
 while($data = $query->fetch_object()){
     array_push($programs,array(
         "lang" => $data->lang,
+        "lang_legal" => toFullName($data->lang),
         "title" => $data->title,
         "time" => strtotime($data->dtime),
         "link" => make_link($data->lang.'/'.$data->url_id),

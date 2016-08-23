@@ -40,38 +40,42 @@ function get_program_from_language($lang,$offset){
 
 $query=$GLOBALS['mysqli']->query("SELECT * FROM code  WHERE lang='$lang' ORDER BY dtime DESC LIMIT $offset,10");
 
-$DStore = array();
-$i=0;
+$stack = array();
+
 while ( $data = $query->fetch_object()) {
 
-    $DStore[$i]["title"]    = $data->title;
-    $DStore[$i]["author"]   = $data->author;
-    $DStore[$i]["time"]     = strtotime($data->dtime);
-    $DStore[$i]["lang"]     = $data->lang;
-    $DStore[$i]["link"]     = make_link($data->lang.'/'.$data->url_id);
-$i++;
+    array_push($stack,array(
+        "title" => $data->title,
+        "author"=> $data->author,
+        "time"  => strtotime($data->dtime),
+        "lang"  => $data->lang,
+        "link"  => make_link($data->lang.'/'.$data->url_id),
+        "lang_legal" => toFullName($data->lang)));
+
 }
 
-return $DStore;
+return $stack;
 }
 
 function recent_programs($offset){
 
 $query=$GLOBALS['mysqli']->query("SELECT * FROM code  ORDER BY dtime DESC LIMIT $offset,10");
 
-$DStore = array();
-$i=0;
+$stack = array();
+
 while ( $data = $query->fetch_object()) {
 
-    $DStore[$i]["title"]    = $data->title;
-    $DStore[$i]["author"]   = $data->author;
-    $DStore[$i]["time"]     = strtotime($data->dtime);
-    $DStore[$i]["lang"]     = $data->lang;
-    $DStore[$i]["link"]     = make_link($data->lang.'/'.$data->url_id);
-$i++;
-}
+    array_push($stack, array(
+        "title" =>  $data->title,
+        "author"=>  $data->author,
+        "time"  =>  strtotime($data->dtime),
+        "lang"  =>  $data->lang,
+        "link"  =>  make_link($data->lang.'/'.$data->url_id),
+        "lang_legal" => toFullName($data->lang)));
 
-return $DStore;
+}
+return $stack;
+
 }
 
 function get_program_from_id($id){
@@ -89,6 +93,7 @@ function get_program($lang,$url){
     $data->enc_content = $data->content;
     $data->content = htmlspecialchars_decode($data->content,ENT_QUOTES);
     $data->notes = htmlspecialchars_decode($data->notes,ENT_QUOTES);
+    $data->lang_legal = toFullName($data->lang);
     return $data;
 }
 
@@ -148,28 +153,20 @@ function random_programs(){
 
 $query = $GLOBALS['mysqli']->query("SELECT * FROM code ORDER BY RAND() LIMIT 10");
 
-$DStore = array();
+$stack = array();
 
-while ( $data = $query->fetch_object()) {
+while ( $data = $query->fetch_object()) {    
 
-    if($data->lang == "cpp"){
-        $legal_lang = "C++";
-    }else{
-        $legal_lang = ucfirst($data->lang);
-    }
-
-    
-
-array_push($DStore,array(
+array_push($stack,array(
     'lang' => $data->lang,
     'title' => $data->title,
     'url_id' => $data->url_id,
-    'legal_lang' => $legal_lang
+    'lang_legal' => toFullName($data->lang)
     ));
 
 }
 
-return $DStore;
+return $stack;
 
 }
 
@@ -178,3 +175,30 @@ return $DStore;
 $description = array(
     "c" => "C Programs",
     "cpp" => "");
+
+function toFullName($lang){
+
+    switch($lang){
+
+        case 'c'        : return 'C';
+        case 'cpp'      : return 'C++';
+        case 'python'   : return 'Python';
+        case 'php'      : return 'PHP';
+        case 'ruby'     : return 'Ruby';
+        case 'perl'     : return 'Perl';
+        case 'java'     : return 'Java';
+        case 'javascript'   : return 'JavaScript';
+        case 'csharp'   : return 'C#';
+        case 'objc'     : return 'Objective-C';
+        case 'swift'    : return 'Swift';
+        case 'ocaml'    : return 'OCaml';
+        case 'go'       : return 'GO';
+        case 'clojure'  : return 'Clojure';
+        case 'nodejs'   : return 'Node.JS';
+        case 'android'  : return 'Android';
+
+        default         : return 0;
+
+    }
+
+}
