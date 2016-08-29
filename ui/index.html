@@ -49,13 +49,48 @@
 
 <ul class="pagination pagination-sm">
 
-{% for i in 0..pages %}
 
-  <li {% if i == active_page %}
-  class="active"
-  {% endif %}><a  href="{{base_url}}{% if i > 0 %}?page={{ i }}{% else %}{% endif %}">{{ i+1 }}</a></li>
+{% if not active_page %}
 
-{% endfor %}
+<li  class="active"><a  href="#">{{ i+1 }}</a></li>
+<li ><a  href="{{base_url}}?page=1">2</a></li>
+<li ><a  href="{{base_url}}?page=2">3</a></li>
+<li class="dots" ><span><span>...</span></span></li>
+<li ><a  href="{{base_url}}?page={{ pages-2 }}">{{ pages-1 }}</a></li>
+<li ><a  href="{{base_url}}?page={{ pages-1 }}">{{ pages }}</a></li>
+<li ><a  href="{{base_url}}?page={{ pages }}">{{ pages+1 }}</a></li>
+
+{% elseif pages == active_page %}
+
+<li ><a  href="{{base_url}}">{{ i+1 }}</a></li>
+<li ><a  href="{{base_url}}?page=1">2</a></li>
+<li ><a  href="{{base_url}}?page=2">3</a></li>
+<li class="dots" ><span><span>...</span></span></li>
+<li ><a  href="{{base_url}}?page={{ pages-2 }}">{{ pages-1 }}</a></li>
+<li ><a  href="{{base_url}}?page={{ pages-1 }}">{{ pages }}</a></li>
+<li class="active"><a  href="#">{{ pages+1 }}</a></li>
+
+{% elseif pages < active_page %}
+
+<!-- Invalid Page -->
+
+{% else %}
+
+<li><a  href="{{base_url}}">{{ i+1 }}</a></li>
+<li class="dots" ><span><span>...</span></span></li>
+{% if active_page  != 1 %}
+<li><a  href="{{base_url}}?page={{ active_page-1 }}">{{ active_page }}</a></li>
+{% endif %}
+<li class="active"><a  href="#">{{ active_page+1 }}</a></li>
+{% if active_page+1  != pages %}
+<li><a  href="{{base_url}}?page={{ active_page+1 }}">{{ active_page+2 }}</a></li>
+{% endif %}
+<li class="dots" ><span><span>...</span></span></li>
+<li ><a  href="{{base_url}}?page={{ pages }}">{{ pages+1 }}</a></li>
+
+{% endif %}
+
+
 </ul>
 
 </div>

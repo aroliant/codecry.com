@@ -399,6 +399,22 @@ footer ul li a {
 .pagination a{
     font-size: 16px !important;
 }
+.pagination li.dots{
+
+}
+.pagination li.dots span{
+    height: 36px;
+    font-size: 20px;
+    display: block;
+    width: 36px;
+}
+.pagination li.dots span span{
+    height: 6px;
+    position: relative;
+    top: -16px;
+    font-size: 27px;
+    width: 19px;
+}
 .ppolicy {
     font-family: arial, sans-serif;
     font-size: 15px;
