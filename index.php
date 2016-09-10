@@ -89,7 +89,9 @@ $app->get('/language/:language/',function($language){
         'stats'=> $CodeStats,
         'programs'=> $Programs,
         'pages' => $pages,
-        'active_page' => $activePage
+        'active_page' => $activePage,
+        'description' => $GLOBALS['description'][$language],
+        'keywords' => $GLOBALS['keywords'][$language]
         ));
 
 

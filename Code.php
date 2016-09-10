@@ -172,9 +172,43 @@ return $stack;
 
 /* Programs by Language Page Meta Description */
 
-$description = array(
-    "c" => "C Programs",
-    "cpp" => "");
+$GLOBALS['description'] = array(
+    "c" => "C Code Snippets : C - the most popular general purpose programming language developed by Dennis Ritchie at  Bell Labs",
+    "cpp" => "C++ Code Snippets : C++ - Object Oriented successor of C, designed by Bjarne Stroustrup at Bell Labs",
+    "python" => "Python Code Snippets : Python - Dynamic, interpreted, interactive, object-oriented programming language with good code readability, designed by Guido van Rossum",
+    "perl" =>  "Perl Code Snippets : Perl - high-level, general-purpose, interpreted, dynamic programming language especially designed for text processing, developed by Larry Wall",
+    "php" =>  "PHP Code Snippets : PHP - Server scripting language, and a powerful tool for making dynamic web pages, designed by Rasmus Lerdorf",
+    "ocaml" => "OCaml Code Snippets : OCaml is a general purpose programming language with an emphasis on expressiveness and safety. ",
+    "clojure" =>  "Clojure Code Snippets : Clojure - general-purpose programming language with an emphasis on functional programming, created by Rich Hickey",
+    "ruby" =>  "Ruby Code Snippets : Ruby - A dynamic, open source programming language with a focus on simplicity and productivity, designed by Yukihiro Matsumoto",
+    "javascript" =>  "JavaScript Code Snippets : JavaScript - high-level, dynamic, untyped, and interpreted programming language, designed by Brendan Eich",
+    "objc" =>  "Objective-C Code Snippets : Objective-C - general-purpose, object-oriented programming language, designed by Brad Cox and Tom Love",
+    "swift" =>  "Swift Code Snippets : Swift - general-purpose, multi-paradigm, compiled programming language, designed by Chris Lattner and Apple Inc.",
+    "go" =>  "GO Code Snippets : Go is an open source programming language created at Google in 2007 by Robert Griesemer, Rob Pike, and Ken Thompson",
+    "nodejs" =>  "Node.JS Code Snippets : Node.JS - Event-driven I/O server-side JavaScript environment based on V8, designed by Ryan Dahl",
+    "android" =>  "Android Sample Projects : Android - mobile operating system based on the Linux kernel, developed by Google",
+    "ios" =>  "iOS Sample projects : iOS - mobile operating system created and developed by Apple Inc. and distributed exclusively for Apple hardware",
+    "csharp" =>  "C# Code Snippets : C# - simple, modern, general-purpose, object-oriented programming language developed by Microsoft within its .NET initiative led by Anders Hejlsberg");
+
+/* Programs by Language Page Meta Description */
+
+$GLOBALS['keywords'] = array(
+    "c" => "c programs, programs in c, c programs site, c, c basics, c tutorial, c code",
+    "cpp" => "c++ programs, programs in c++, c++ programs site, c++, c++ basics, c++ tutorial, c++ code",
+    "python" => "python programs, programs in python, python programs site, python, python basics, python tutorial, python scripts, python codes, python2 programs, python3 programs",
+    "perl" =>  "perl programs, programs in perl, perl programs site, perl, perl basics, perl tutorial, perl scripts, perl codes",
+    "php" =>  "php scripts, codes in php, php coding site, php, php basics, php tutorial, php scripts, php codes, php snippets, php programs",
+    "ocaml" => "ocaml scripts, codes in ocaml, ocaml coding site, ocaml, ocaml basics, ocaml tutorial, ocaml scripts, ocaml codes, ocaml snippets, ocaml programs",
+    "clojure" =>  "clojure scripts, codes in clojure, clojure coding site, clojure, clojure basics, clojure tutorial, clojure scripts, clojure codes, clojure snippets, clojure programs",
+    "ruby" =>  "ruby scripts, codes in ruby, ruby coding site, ruby, ruby basics, ruby tutorial, ruby scripts, ruby codes, ruby snippets, ruby programs",
+    "javascript" =>  "javascript scripts, codes in javascript, javascript coding site, javascript, javascript basics, javascript tutorial, javascript scripts, javascript codes, javascript snippets, javascript programs",
+    "objc" =>  "Objctive C scripts, codes in Objctive C, Objctive C coding site, Objctive C, Objctive C basics, Objctive C tutorial, Objctive C scripts, Objctive C codes, Objctive C snippets, Objctive C programs, Objctive-C",
+    "swift" =>  "swift scripts, codes in swift, swift coding site, swift, swift basics, swift tutorial, swift scripts, swift codes, swift snippets, swift programs",
+    "go" =>  "go scripts, codes in go, go coding site, go, go basics, go tutorial, go scripts, go codes, go snippets, go programs",
+    "nodejs" =>  "nodejs scripts, codes in nodejs, nodejs coding site, nodejs, nodejs basics, nodejs tutorial, nodejs scripts, nodejs codes, nodejs snippets, nodejs programs",
+    "android" =>  "android scripts, codes in android, android coding site, android, android basics, android tutorial, android scripts, android codes, android snippets, android programs",
+    "ios" =>  "ios scripts, codes in ios, ios coding site, ios, ios basics, ios tutorial, ios scripts, ios codes, ios snippets, ios programs",
+    "csharp" =>  "c# scripts, codes in c#, c# coding site, c#, c# basics, c# tutorial, c# scripts, c# codes, c# snippets, c# programs");
 
 function toFullName($lang){
 

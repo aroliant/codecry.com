@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html itemscope itemtype="http://schema.org/WebSite">
     <head>
-        <title>{{title}}</title>
+        <title itemprop="title">{{title}}</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta itemprop="description" name="description" content="{{ program.description }}">
+        <meta name="keywords" content="{{ program.keywords }}">        
+        <link rel="prefetch" href="http://codecry.com">
+        <link rel="prerender" href="http://codecry.com">
+        <meta property="fb:app_id" content="745945198842569"/>
+
         {% include 'stylesheets.html' %}
-        <link rel="stylesheet" href="https://cdn.rawgit.com/Aroliant/web/gh-pages/stylesheets/codecry/prettify.css" />
+        <link rel="stylesheet" href="https://cdn.rawgit.com/Aroliant/web/gh-pages/stylesheets/codecry/prettify.css" />      
         
-        <meta name="description" content="{{ program.description }}">
-    	<meta name="keywords" content="{{ program.keywords }}">
-    	<meta property="fb:app_id" content="745945198842569"/>
         
     </head>
     <body  onload="prettyPrint()">
@@ -38,7 +44,7 @@
                     <a href="{{base_url}}{{program.lang}}/{{program.url_id}}/download"><button class="download" >Download</button></a>
                 </div>
                 <pre class="prettyprint" id="program" style="border:none;">{{program.content}}</pre>
-            <pre id="codestore" style="display:none;" lang="{{program.lang}}">{{program.content}}</pre>
+            <pre id="codestore" style="display:none;" lang="{{program.lang}}" itemscope itemtype="http://schema.org/Code">{{program.content}}</pre>
                 <div class="outputHolder">
                     <h2>Output :</h2>
                 <pre class="output">{{ program.output }}</pre>

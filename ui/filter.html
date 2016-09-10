@@ -1,8 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html itemscope itemtype="http://schema.org/WebSite">
     <head>
-        <title>{{title}}</title>
-{% include 'stylesheets.html' %}
+
+    <title itemprop="title">{{title}}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta itemprop="description" name="description" content="{{description}}">
+    <meta name="keywords" content="{{keywords}}">
+    <link rel="prefetch" href="http://codecry.com">
+    <link rel="prerender" href="http://codecry.com">
+    <meta property="fb:app_id" content="745945198842569"/>
+
+    {% include 'stylesheets.html' %}
+
     </head>
     <body>
 
