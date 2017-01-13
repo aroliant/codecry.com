@@ -7,12 +7,25 @@
     margin: 0;
     padding: 0;
 }
+.navbar-toggle{
+    float: left;
+    margin: 8px 0 0 15px;
+}
+.navbar-brand > img{
+    width: 190px;
+    top: -6px;
+    position: relative;
+}
+.form-control{
+    border-radius: none;
+}
 .header h2 {
     text-align: center;
     color: #FFF;
     margin: 0;
     padding: 17px;
     font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+    display: none;
 }
 .left-nav .icon{width: 40px;height: 30px;left: -16px;position: relative;border: 1px solid #EEE;}
 .left-nav li a{
@@ -20,8 +33,10 @@
     top: -9px;
 }
 .lang_navigation {
-    width: 20%;
-    display: inline-block;
+    width: 200px;
+    position: absolute;
+    z-index: 9999;
+    display: none;
     float: left;
     padding: 0px 10px 10px 0px;
     font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -47,14 +62,19 @@
     padding: 2px 6px;
     border: 1px solid #EEE;
 }
+.lang_navigation h2{
+    display: none;
+}
 .recent_updates {
-    width: 79%;
+    width: 100%;
     display: inline-block;
     font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
 }
 .recent_updates ul {
     background: #ffffff;
     box-shadow: 2px 0px 2px #DCDCDC;
+    margin: 0;
+    padding: 0;
 }
 .recent_updates li {
     list-style: none;
@@ -66,7 +86,7 @@
     font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
 }
 .code-nav {
-    width: 450px;
+    width: 330px;
     top: 6px;
     position: relative;
     margin-left: 16%;
@@ -146,28 +166,26 @@ span.tag.clojure {
     border-top: 1px solid #f1f1f1;
     margin-top: 60px;
     padding-top: 40px;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
 }
 .comments h2{
     font-size: 19px;
 }
 .holder{
     width: 100%;
-    min-width: 800px;
     display: block;
     margin: 0 auto 0 auto;
     padding: 0;
 }
 
 .code_holder {
-    width: 75%;
+    width: 100%;
     display: inline-block;
 }
 .code_holder p.description {
     margin: 20px 0 20px 0;
     font-size: 16px;
     line-height: 30px;
-    height: 70px;
     font-family: "Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .code_holder pre.output, pre#program {
@@ -219,12 +237,8 @@ span.tag.clojure {
     margin-top: 20px;
 }
 .right{
-    width: 24%;
-    height: 120px;
-    display: inline-block;
+    width: 100%;
     position: relative;
-    float: right;
-    top: 110px;
 }
 
 .right h2{
@@ -391,13 +405,16 @@ footer ul li a {
     color: #8B8888;
 }
 .pagination {
-    margin: 0 auto;
+    margin: 0 auto !important;
     display: block;
     text-align: center;
-    width: 400px;
+    width: 240px;
 }
 .pagination a{
     font-size: 16px !important;
+}
+.pagination > li{
+    padding: 0 !important;
 }
 .pagination li.dots{
 
@@ -452,3 +469,4 @@ footer ul li a {
     position: relative;
     top: -10px;
 }
+
