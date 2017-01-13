@@ -55,7 +55,12 @@
                 {% if program.algorithm != '' %}
                 <div class="outputHolder">
                     <h2>Algorithm :</h2>
-                    <pre class="output">{{ program.algorithm }}</pre>
+                    <ol class="algorithm">
+                    {% for line in program.algorithm %}
+                        <li>{{ line | raw}}</li>
+                    {% endfor %}
+                    </ol>
+
                 </div>
                 {% endif %}
 

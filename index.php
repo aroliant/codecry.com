@@ -123,6 +123,11 @@ $app->get('/:language/:url_id',function($language,$url_id){
     $Parsedown->setMarkupEscaped(true);
     $Program['notes'] = $Parsedown->text($Program['notes']); 
 
+    /* Processing Algorithm */
+    $Program['algorithm']  = $Parsedown->line($Program['algorithm']);
+    $Program['algorithm'] = explode("\n", $Program['algorithm']);
+    
+
     echo $GLOBALS['twig']->render('program.html', array(
         'title' => $Program['title'].' in '.ucfirst($Program['lang']),
         'program' => $Program,
