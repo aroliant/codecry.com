@@ -9,7 +9,7 @@ $database   =   "aroliard_pro_center87";
 $host       =   "localhost";
 $username   =   "root";
 $password   =   "";
-$database   =   "aro_code";
+$database   =   "aroliard_pro_center87";
 }
 
 $GLOBALS['EXTENSION']  = array(
