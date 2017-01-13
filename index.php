@@ -105,10 +105,10 @@ $app->get('/:language/:url_id',function($language,$url_id){
 
     $Program =   (array) $Program;
     
-    $Program['output'] = htmlspecialchars_decode($Program['output']);
-    $Program['description'] = htmlspecialchars_decode($Program['description']);
-    $Program['input'] = htmlspecialchars_decode($Program['input']);
-    $Program['content'] = htmlspecialchars_decode($Program['content']);
+    $Program['output'] = htmlspecialchars_decode($Program['output'],ENT_QUOTES);
+    $Program['description'] = htmlspecialchars_decode($Program['description'],ENT_QUOTES);
+    $Program['input'] = htmlspecialchars_decode($Program['input'],ENT_QUOTES);
+    $Program['content'] = htmlspecialchars_decode($Program['content'],ENT_QUOTES);
 
     $Alt = (array) alt_available($url_id);
 
@@ -126,6 +126,8 @@ $app->get('/:language/:url_id',function($language,$url_id){
     /* Processing Algorithm */
     $Program['algorithm']  = $Parsedown->line($Program['algorithm']);
     $Program['algorithm'] = explode("\n", $Program['algorithm']);
+
+    $Program['output'] = str_replace("<br />", "", $Parsedown->line($Program['output']));
     
 
     echo $GLOBALS['twig']->render('program.html', array(

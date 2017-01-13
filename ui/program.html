@@ -37,12 +37,14 @@
                         <button class="download">Download</button>
                     </a>
                 </div>
-                <pre class="prettyprint" id="program" style="border:none;">{{program.content}}</pre>
-                <pre id="codestore" style="display:none;" lang="{{program.lang}}" itemscope itemtype="http://schema.org/Code">{{program.content}}</pre>
+
+
+                <pre class="prettyprint" id="program" style="border:none;" itemscope itemtype="http://schema.org/Code">{{program.content }}</pre>              
+                
                 
                 <div class="outputHolder">
                     <h2>Output :</h2>
-                    <pre class="output">{{ program.output }}</pre>
+                    <pre class="output">{{ program.output | raw}}</pre>
                 </div>
 
                 {% if program.notes != '' %}
@@ -52,7 +54,7 @@
                 </div>
                 {% endif %}
 
-                {% if program.algorithm != '' %}
+                {% if program.algorithm[0] != '' %}
                 <div class="outputHolder">
                     <h2>Algorithm :</h2>
                     <ol class="algorithm">
