@@ -59,3 +59,8 @@ if ($('#branchList').length) {
 $('.search').click(function (e) {
     e.stopPropagation();
 });
+
+
+mobNavButton.onclick = function(){
+    $(".lang_navigation").toggle();
+}
