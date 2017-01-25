@@ -117,7 +117,7 @@ $query=$GLOBALS['mysqli']->query("SELECT * FROM code  WHERE title LIKE '%$keywor
 
 $dataOUT = "<ul>";
 while ( $data = $query->fetch_object()) {
-    $dataOUT .= "<li><a href='http://codecry.com/".$data->lang."/".$data->url_id."' >".$data->title."</a></li>";
+    $dataOUT .= "<li><a href='http://codecry.com/".$data->lang."/".$data->url_id."' >".$data->title." in ".toFullName($data->lang)."</a></li>";
 }
 
 return $dataOUT."</ul>";
