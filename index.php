@@ -131,7 +131,7 @@ $app->get('/:language/:url_id',function($language,$url_id){
     
 
     echo $GLOBALS['twig']->render('program.html', array(
-        'title' => $Program['title'].' in '.ucfirst($Program['lang']),
+        'title' => $Program['title'].' in '.toFullName($Program['lang']),
         'program' => $Program,
         'alt_available' => $Alt_size,
         'alts' => $Alt,
