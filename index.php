@@ -1,6 +1,6 @@
 <?php
 $GLOBALS['DEPLOY']  = false;
-$GLOBALS['BASE_URL'] = ''.($GLOBALS['DEPLOY']  ? "http://codecry.com/" : "http://localhost/code/");
+$GLOBALS['BASE_URL'] = ''.($GLOBALS['DEPLOY']  ? "http://codecry.com/" : "http://localhost/codecry/codecry/");
 
 require_once 'functions.php';
 require 'Code.php';

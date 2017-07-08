@@ -188,7 +188,8 @@ $GLOBALS['description'] = array(
     "nodejs" =>  "Node.JS Code Snippets : Node.JS - Event-driven I/O server-side JavaScript environment based on V8, designed by Ryan Dahl",
     "android" =>  "Android Sample Projects : Android - mobile operating system based on the Linux kernel, developed by Google",
     "ios" =>  "iOS Sample projects : iOS - mobile operating system created and developed by Apple Inc. and distributed exclusively for Apple hardware",
-    "csharp" =>  "C# Code Snippets : C# - simple, modern, general-purpose, object-oriented programming language developed by Microsoft within its .NET initiative led by Anders Hejlsberg");
+    "csharp" =>  "C# Code Snippets : C# - simple, modern, general-purpose, object-oriented programming language developed by Microsoft within its .NET initiative led by Anders Hejlsberg",
+    "java" => "");
 
 /* Programs by Language Page Meta Description */
 
@@ -208,7 +209,8 @@ $GLOBALS['keywords'] = array(
     "nodejs" =>  "nodejs scripts, codes in nodejs, nodejs coding site, nodejs, nodejs basics, nodejs tutorial, nodejs scripts, nodejs codes, nodejs snippets, nodejs programs",
     "android" =>  "android scripts, codes in android, android coding site, android, android basics, android tutorial, android scripts, android codes, android snippets, android programs",
     "ios" =>  "ios scripts, codes in ios, ios coding site, ios, ios basics, ios tutorial, ios scripts, ios codes, ios snippets, ios programs",
-    "csharp" =>  "c# scripts, codes in c#, c# coding site, c#, c# basics, c# tutorial, c# scripts, c# codes, c# snippets, c# programs");
+    "csharp" =>  "c# scripts, codes in c#, c# coding site, c#, c# basics, c# tutorial, c# scripts, c# codes, c# snippets, c# programs",
+    "java" => "");
 
 function toFullName($lang){
 

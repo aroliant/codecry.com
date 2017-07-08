@@ -2,7 +2,7 @@
 
 
 #CONFIGURATION STARTS
-define('DISPLAY_ERROR', true);          #DISPLAY ERRORS
+define('DISPLAY_ERROR', false);          #DISPLAY ERRORS
 
 
 
